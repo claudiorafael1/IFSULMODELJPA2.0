@@ -5,6 +5,7 @@
  */
 package br.edu.ifsul.testes;
 
+import br.edu.ifsul.jpa.EntityManagerUtil;
 import br.edu.ifsul.modelo.Pais;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,17 +17,17 @@ import javax.persistence.Persistence;
  */
 public class TestePersostor {
     public static void main(String[] args){
-   EntityManagerFactory emf= Persistence.createEntityManagerFactory("IFSULModelPU");
-   EntityManager em =emf.createEntityManager();
+  
+   EntityManager em =EntityManagerUtil.getEntityMenager();
    Pais p = new Pais();
  
-   p.setNome("Brasil");
-   p.setIso("BRA");
+   p.setNome("Estados Unidos");
+   p.setIso("EUA");
    em.getTransaction().begin();
    em.persist(p);
    em.getTransaction().commit();
    em.close();
-   emf.close();
+   
    
     }
     
