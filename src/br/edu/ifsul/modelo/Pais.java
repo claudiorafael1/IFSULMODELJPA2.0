@@ -13,11 +13,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  *
  * @author rafael
  */
+@Table(name="tbl_pais")
 @Entity
 public class Pais implements Serializable{
    @Id
