@@ -6,7 +6,6 @@
 package br.edu.ifsul.testes.junit;
 
 import br.edu.ifsul.jpa.EntityManagerUtil;
-import br.edu.ifsul.modelo.Estado;
 import br.edu.ifsul.modelo.Pais;
 import javax.persistence.EntityManager;
 import org.junit.After;
@@ -19,38 +18,38 @@ import static org.junit.Assert.*;
  *
  * @author rafael
  */
-public class TestePersistirPais {
-     EntityManager em;
-    public TestePersistirPais() {
+public class TesteAlterarPais {
+    EntityManager em;
+    public TesteAlterarPais() {
     }
     
     @Before
     public void setUp() {
-   em=EntityManagerUtil.getEntityMenager();
+    em=EntityManagerUtil.getEntityMenager();
     }
     
     @After
     public void tearDown() {
-    em.close();
+        em.close();
     }
-    
     @Test
-public void teste(){
- boolean exception =false;
-    try{
-    Pais e = new Pais();
-    e.setNome("França");
-    e.setIso("FR");
-    
+    public void teste(){
    
+   
+    boolean exception =false;
+    try{
+  
+     Pais p = em.find(Pais.class,8);
+         p.setNome("Argentina");
+         p.setIso("ARG");  
         em.getTransaction().begin();
-        em.persist(e);
+         em.merge(p);
         em.getTransaction().commit();
         }catch (Exception e ){
         exception=true;
         e.printStackTrace();
         }
     Assert .assertEquals(false, exception);
-}
-
+    }
+    
 }
